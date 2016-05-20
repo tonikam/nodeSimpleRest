@@ -108,18 +108,31 @@ var ourAppRouter = function(app) {
 	
 	app.post("/notebook", function(req, res) {
 		try {
-			if (!req.body.title || !req.body.author || !req.body.entry ) {
-				helper.logger(helper.logLevel.info,"Es fehlt mindestens ein Attribut zur Notiz!");
-				
-				return res.send({"status": "Fehler", "message": "Es fehlt mindestens ein Attribut zur Notiz!"});
-			} else {
+			if (helper.checkPostParams(req.body)) {
 				helper.addNote(req.body);
-				helper.logger(helper.logLevel.info,"Neue Notiz: " + req.body.title + " - " + req.body.author + " - " + req.body.entry);
-				
+								
 				return res.send(req.body);
+	
+			} else {
+				return res.send({"status": "Fehler", "message": "Es fehlt mindestens ein Attribut zur Notiz!"});
 			}
 		} catch(e) {
 			helper.logger(helper.logLevel.error,"route post /notebook: " + e);
+		}
+	});
+
+	app.post("/notebookUpdate", function(req, res) {
+		try {
+			if (helper.checkPostParams(req.body,true)) {
+				helper.updateNote(req.body);
+				
+				return res.send(req.body);				
+				
+			} else {
+				return res.send({"status": "Fehler", "message": "Es fehlt mindestens ein Attribut zur Notiz!"});
+			}
+		} catch(e) {
+			helper.logger(helper.logLevel.error,"route post /notebookUpdate: " + e);
 		}
 	});
 	
