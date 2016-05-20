@@ -1,128 +1,47 @@
 [
   {
+    "noteid": 0,
+    "guid": "feabeaff-f0ad-4ad7-bd79-fc49aec12480",
+    "title": "R2D2",
+    "importance": "2",
+    "datecreate": "20160521014432",
+    "datefinished": "20160521014432",
+    "datetarget": "20160521014432"
+  },
+  {
     "noteid": 1,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld0"
+    "guid": "f7d91271-0a20-4da1-8e4a-d10ee5826589",
+    "title": "R2D2",
+    "importance": "2",
+    "datecreate": "20160521014432",
+    "datefinished": "20160521014432",
+    "datetarget": "20160521014432"
   },
   {
     "noteid": 2,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld1"
+    "guid": "258db8d0-370b-4df0-b84e-cd22ae1cde40",
+    "title": "R2D2",
+    "importance": "2",
+    "datecreate": "20160521014432",
+    "datefinished": "20160521014432",
+    "datetarget": "20160521014432"
   },
   {
     "noteid": 3,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld2"
-  },
-  {
-    "noteid": 4,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld3"
+    "guid": "12e07e02-26b4-40c9-a900-0d2fd2210b70",
+    "title": "R2D2",
+    "importance": "2",
+    "datecreate": "20160521014432",
+    "datefinished": "20160521014432",
+    "datetarget": "20160521014432"
   },
   {
     "noteid": 5,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld4"
-  },
-  {
-    "noteid": 6,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld5"
-  },
-  {
-    "noteid": 8,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld0"
-  },
-  {
-    "noteid": 9,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld1"
-  },
-  {
-    "noteid": 101,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld0"
-  },
-  {
-    "noteid": 103,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld0"
-  },
-  {
-    "noteid": 104,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld1"
-  },
-  {
-    "noteid": 105,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld0"
-  },
-  {
-    "noteid": 107,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld2"
-  },
-  {
-    "noteid": 108,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld3"
-  },
-  {
-    "noteid": 109,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld4"
-  },
-  {
-    "noteid": 110,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld0"
-  },
-  {
-    "noteid": 113,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld0"
-  },
-  {
-    "noteid": 114,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld1"
-  },
-  {
-    "noteid": 115,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld2"
-  },
-  {
-    "noteid": 116,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld3"
-  },
-  {
-    "noteid": 117,
-    "title": "Alles Sense",
-    "author": "Terry Pratchett",
-    "entry": "discworld0"
+    "guid": "6d5e9b91-8332-4f9f-989d-6f30202f2eb5",
+    "title": "Titel",
+    "importance": "5",
+    "datecreate": "20160521014455",
+    "datefinished": "20160521014455",
+    "datetarget": "20160521014455"
   }
 ]

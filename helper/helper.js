@@ -17,6 +17,7 @@ var moment = require('moment');
 var helper = {
 	
 	noteShelf : [],
+	noteShelfRecord : [],
 
 	noteCounter : 0,
 	
@@ -43,7 +44,7 @@ var helper = {
 		var checkOK = false;
 		if (update) {
 			helper.logger(helper.logLevel.info,"--> Update");
-			if (req.body.noteid && req.body.title && req.body.text && req.body.importance ) {
+			if (reqBody.noteid && reqBody.title && reqBody.text && reqBody.importance ) {
 				checkOK = true;
 			}
 		} else {
@@ -67,10 +68,13 @@ var helper = {
 			var updateFlag = updateFlag || false;
 			
 			// count up before calling fillNote!
-			helper.noteCounter++;
+			helper.noteCounter = helper.getNoteID() + 1;
 
 			var note = helper.fillNote(noteAttrib, updateFlag);
 			helper.noteShelf.push(note);
+			
+			helper.saveNotes();
+			
 			helper.logger(helper.logLevel.info,"Hinzugefügt: noteCounter= " + helper.noteCounter);
 
 		} catch(e) {
@@ -90,6 +94,7 @@ var helper = {
 			if (updateFlag == true) {
 				note.noteid = noteAttrib.noteid;
 			} else {
+				// counter was counted up in addNote
 				note.noteid = helper.noteCounter;
 			}
 			
@@ -120,7 +125,9 @@ var helper = {
 		try {
 			if (entryID) {
 				helper.noteShelf.splice(entryID,1);
-				helper.noteCounter--;
+				
+				helper.saveNotes();
+				
 				helper.logger(helper.logLevel.info,"Gelöscht: entryID=" + entryID + " noteCounter= " + helper.noteCounter);
 			} else {
 				helper.logger(helper.logLevel.info,"entryID=" + entryID + " nicht in Notizensammlung vorhanden");
@@ -160,10 +167,15 @@ var helper = {
 				// log formatted date
 				helper.logFormattedDate(entryID);
 
-				return helper.noteShelf[entryID];
+				var oneRecordArray = [];
+				oneRecordArray.push(helper.noteShelf[entryID]);
+				
+				return oneRecordArray;
 
 			} else {
+				
 				return helper.noteShelf;
+				
 			}
 		} catch(e) {
 			helper.logger(helper.logLevel.error,"helper getNoteShelf: " + e);			
@@ -176,7 +188,7 @@ var helper = {
 	resetNoteShelf : function() { 
 		try {
 			helper.noteShelf = [];	
-			helper.noteCounter = 0;
+			helper.noteCounter = -1;
 		} catch(e) {
 			helper.logger(helper.logLevel.error,"helper resetNoteShelf: " + e);	
 		}
@@ -190,7 +202,9 @@ var helper = {
 		try {
 			helper.logger(helper.logLevel.info,"loadNotes from: " + helper.fileName + " in helper.noteShelf[]");
 			helper.noteShelf = JSON.parse(fs.readFileSync(helper.fileName));
-			helper.noteCounter = helper.noteShelf[helper.noteShelf.length-1].noteid;
+			
+			helper.noteCounter = helper.getNoteID();
+			
 			helper.logger(helper.logLevel.info,"Load Notes: noteCounter= " + helper.noteCounter);
 			return true;
 		} catch(e) {
@@ -234,6 +248,24 @@ var helper = {
 			return found;
 		} catch(e) {
 			helper.logger(helper.logLevel.error,"helper checkNotes: " + e);
+		}
+	},
+
+	/**
+  * Get highest noteid in noteShelf.
+ 	* @return {Number} Note id or -1.
+  */		
+	getNoteID : function() {
+		try {
+			var found = -1;
+			for (var i = 0, counter = helper.noteShelf.length; i < counter; i++) {
+				if (helper.noteShelf[i].noteid > found) {
+					found = helper.noteShelf[i].noteid;
+				}
+			}
+			return found;
+		} catch(e) {
+			helper.logger(helper.logLevel.error,"helper getNoteId: " + e);
 		}
 	},
 	

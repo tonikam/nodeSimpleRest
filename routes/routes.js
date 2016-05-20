@@ -84,14 +84,17 @@ var ourAppRouter = function(app) {
 		}
 	});
 
-	app.get("/notebookDelete", function(req, res) {
+	app.post("/notebookDelete", function(req, res) {
 
+		console.log(req.body);
 		try {
-			var checkedID = helper.checkNotes(req.query.noteid);
+			var checkedID = helper.checkNotes(req.body.noteid);
 		
-			if (!req.query.noteid) {
+			if (!req.body.noteid) {
+				helper.logger(helper.logLevel.error,"route get /notebookDelete: Keine ID");
 				return res.send({"status": "Fehler", "message": "Keine ID"});
 			} else if (checkedID == -1) {
+				helper.logger(helper.logLevel.error,"route get /notebookDelete: Unbekannte ID");
 				return res.send({"status": "Fehler", "message": "Unbekannte ID"});
 			} else {
 				helper.deleteNote(checkedID);
@@ -101,9 +104,6 @@ var ourAppRouter = function(app) {
 		} catch(e) {
 			helper.logger(helper.logLevel.error,"route get /notebookDelete: " + e);
 		}
-		
-		console.log("delete end");
-		
 	});	
 	
 	app.post("/notebook", function(req, res) {
@@ -111,7 +111,7 @@ var ourAppRouter = function(app) {
 			if (helper.checkPostParams(req.body)) {
 				helper.addNote(req.body);
 								
-				return res.send(req.body);
+				return res.send(helper.getNoteShelf());
 	
 			} else {
 				return res.send({"status": "Fehler", "message": "Es fehlt mindestens ein Attribut zur Notiz!"});
@@ -126,8 +126,8 @@ var ourAppRouter = function(app) {
 			if (helper.checkPostParams(req.body,true)) {
 				helper.updateNote(req.body);
 				
-				return res.send(req.body);				
-				
+				return res.send(helper.getNoteShelf());
+
 			} else {
 				return res.send({"status": "Fehler", "message": "Es fehlt mindestens ein Attribut zur Notiz!"});
 			}
